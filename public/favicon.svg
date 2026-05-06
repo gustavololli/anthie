@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#FDFBF7" rx="64"/>
+  <!-- Optical centering: y is slightly shifted down from exact center 256 -->
+  <!-- Text color changed to #0F120F for slightly more contrast in 16x16 -->
+  <text x="256" y="272" dominant-baseline="central" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="300" fill="#0F120F">A</text>
+</svg>
