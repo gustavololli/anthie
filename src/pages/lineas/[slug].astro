@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { productLines } from '../../data/product-lines';
+import { products } from '../../data/products';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return productLines.map((line) => ({
+    params: { slug: line.id },
+    props: { line },
+  }));
+}
+
+const { line } = Astro.props;
+const lineProducts = products.filter(p => p.lineId === line.id);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": line.faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<Layout title={line.seoTitle} metaDescription={line.metaDescription}>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <Header />
+
+  <main class="pt-32 pb-24">
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 text-center mb-20">
+      <span class="text-[#9A4444] uppercase tracking-[0.28em] font-bold text-[0.82rem] leading-none mb-6 block">Línea Botánica</span>
+      <h1 class="text-4xl md:text-6xl font-serif text-[#2E2D2A] mb-8">{line.title}</h1>
+      
+      <div class="space-y-6 text-lg text-[#5F5A52] font-light leading-relaxed">
+        {line.longDescription.map(paragraph => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    <!-- Product List -->
+    {lineProducts.length > 0 && (
+      <section class="max-w-6xl mx-auto px-6 mb-24">
+        <h2 class="text-3xl font-serif text-[#2E2D2A] mb-10 text-center">Nuestros Productos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {lineProducts.map(product => (
+            <a href={`/productos/${product.slug}`} class="bg-[#FAF8F4] p-8 rounded-2xl border border-[#E8DFCA] hover:border-[#9A4444] hover:shadow-[0_8px_30px_rgba(154,68,68,0.12)] hover:-translate-y-[2px] transition-all duration-500 group flex flex-col h-full">
+              <div class="flex-grow">
+                <h3 class="text-xl font-serif text-[#2E2D2A] mb-3 group-hover:text-[#9A4444] transition-colors">{product.name}</h3>
+                <p class="text-[#5F5A52] text-[15px] font-light leading-relaxed mb-4">{product.benefit}</p>
+              </div>
+              <span class="text-sm text-[#404728] uppercase tracking-wider font-medium group-hover:text-[#9A4444] transition-colors mt-auto pt-4 border-t border-[#E8DFCA]">Ver detalle &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- FAQs -->
+    <section class="max-w-3xl mx-auto px-6 mb-24 bg-[#FAF8F4] p-10 rounded-3xl border border-[#E8DFCA]/50">
+      <h2 class="text-2xl md:text-3xl font-serif text-[#2E2D2A] mb-8 text-center">Preguntas Frecuentes sobre {line.title}</h2>
+      <div class="space-y-4">
+        {line.faqs.map(faq => (
+          <details class="group bg-white rounded-xl border border-[#E8DFCA] hover:border-[rgba(154,68,68,0.35)] open:border-[rgba(154,68,68,0.35)] transition-colors duration-300">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-[#2E2D2A] group-hover:text-[#9A4444] group-open:text-[#9A4444] transition-colors">
+              <span class="text-[15px]">{faq.question}</span>
+              <span class="transition group-open:rotate-180">
+                <svg fill="none" height="20" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </summary>
+            <div class="text-[#5F5A52] font-light px-5 pb-5 text-[15px] leading-relaxed">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center px-6">
+      <a 
+        href={siteConfig.whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#9A4444] text-[#FAF8F4] px-10 py-5 rounded-full font-sans font-medium tracking-wide hover:bg-[#843838] transition-all duration-300 shadow-[0_14px_30px_rgba(154,68,68,0.22)] border border-[#9A4444] mb-8"
+      >
+        Escribinos por WhatsApp
+      </a>
+      <div class="block">
+        <a href="/" class="text-[#404728] hover:text-[#9A4444] transition-colors font-medium text-sm tracking-wide">&larr; Volver a la página principal</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -3,25 +3,53 @@ import { siteConfig } from '../data/site';
 
 interface Props {
 	title?: string;
+  metaDescription?: string;
+  canonicalURL?: URL | string;
 }
 
-const { title = siteConfig.name } = Astro.props;
+const { 
+  title = siteConfig.name,
+  metaDescription = siteConfig.description,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://anthie.com.ar')
+} = Astro.props;
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Anthie",
+  "url": "https://anthie.com.ar",
+  "logo": "https://anthie.com.ar/favicon.svg",
+  "description": siteConfig.description
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Anthie",
+  "url": "https://anthie.com.ar"
+};
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={siteConfig.description} />
+		<meta name="description" content={metaDescription} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
 		<title>{title}</title>
 		
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
+    <slot name="head" />
 	</head>
 	<body class="bg-base text-ink font-sans antialiased selection:bg-wine selection:text-white">
 		<slot />

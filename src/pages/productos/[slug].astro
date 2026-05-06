@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { products } from '../../data/products';
+import { productLines } from '../../data/product-lines';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const line = productLines.find(l => l.id === product.lineId);
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "category": line?.title || "Botanical Care",
+  "brand": {
+    "@type": "Brand",
+    "name": "Anthie"
+  }
+};
+
+const metaDesc = `${product.name} de Anthie. ${product.benefit} Conocé sus propiedades y consultanos.`;
+---
+
+<Layout title={`${product.name} | Anthie`} metaDescription={metaDesc}>
+  <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(productSchema)} />
+
+  <Header />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <!-- Breadcrumbs -->
+      <nav class="mb-10 text-sm font-medium text-[#5F5A52]">
+        <a href="/" class="hover:text-[#9A4444] transition-colors">Inicio</a>
+        <span class="mx-2">&gt;</span>
+        {line && (
+          <>
+            <a href={`/lineas/${line.id}`} class="hover:text-[#9A4444] transition-colors">{line.title}</a>
+            <span class="mx-2">&gt;</span>
+          </>
+        )}
+        <span class="text-[#9A4444]">{product.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        <!-- Image placeholder -->
+        <div class="bg-[#FAF8F4] aspect-square rounded-3xl border border-[#E8DFCA] flex items-center justify-center p-12">
+          <!-- Note: The actual image logic can be updated when real assets exist -->
+          <div class="text-[#E8DFCA] text-center">
+            <svg class="w-24 h-24 mx-auto mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-sm tracking-widest uppercase">Imagen referencial</span>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="flex flex-col justify-center">
+          <span class="text-[#9A4444] uppercase tracking-[0.28em] font-bold text-[0.82rem] leading-none mb-4 block">
+            {line?.title}
+          </span>
+          <h1 class="text-3xl md:text-5xl font-serif text-[#2E2D2A] mb-6 leading-tight">{product.name}</h1>
+          
+          <div class="space-y-6 text-[15px] text-[#5F5A52] font-light leading-relaxed mb-10">
+            <p>{product.description}</p>
+            <p class="font-medium text-[#404728]">{product.benefit}</p>
+          </div>
+
+          <div class="border-t border-b border-[#E8DFCA] py-6 mb-10">
+            <span class="block text-xs uppercase tracking-widest text-[#9A4444] mb-1">Presentación</span>
+            <span class="text-[#2E2D2A] font-medium">{product.presentation}</span>
+          </div>
+
+          <div>
+            <a 
+              href={siteConfig.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-block text-center bg-[#9A4444] text-[#FAF8F4] px-10 py-5 rounded-full font-sans font-medium tracking-wide hover:bg-[#843838] transition-all duration-300 shadow-[0_14px_30px_rgba(154,68,68,0.22)] border border-[#9A4444]"
+            >
+              Consultar disponibilidad
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
