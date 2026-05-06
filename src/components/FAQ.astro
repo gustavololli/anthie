@@ -1,0 +1,33 @@
+---
+import { faqs } from '../data/faqs';
+---
+
+<section id="faq" class="py-24 bg-[#FAF8F4]">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#2E2D2A]">Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="space-y-6">
+      {faqs.map((faq) => (
+        <details class="group bg-[#FAF8F4] rounded-xl border border-[#E8DFCA] hover:border-[rgba(154,68,68,0.35)] open:border-[rgba(154,68,68,0.35)] transition-colors duration-300">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-[#2E2D2A] group-hover:text-[#9A4444] group-open:text-[#9A4444] transition-colors">
+            <span class="text-lg">{faq.question}</span>
+            <span class="transition group-open:rotate-180">
+              <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+            </span>
+          </summary>
+          <div class="text-[#5F5A52] font-light px-6 pb-6 animate-fadeIn">
+            <p leading-relaxed>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

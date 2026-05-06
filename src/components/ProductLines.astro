@@ -1,0 +1,24 @@
+---
+import { productLines } from '../data/product-lines';
+---
+
+<section id="lineas" class="py-24 bg-[#FAF8F4]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="text-[#9A4444] uppercase tracking-[0.28em] font-bold text-[0.82rem] leading-none mb-6 block">Nuestras Líneas</span>
+      <h2 class="text-3xl md:text-4xl font-serif text-[#2E2D2A]">Fórmulas para tu equilibrio</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {productLines.map((line) => (
+        <div class="bg-[#FAF8F4] p-10 rounded-2xl border border-[#E8DFCA] hover:border-[#9A4444] hover:shadow-[0_8px_30px_rgba(154,68,68,0.12)] hover:-translate-y-[2px] transition-all duration-500 group relative">
+          <div class="w-[32px] h-[1px] bg-[#9A4444] mb-6"></div>
+          <h3 class="text-2xl font-serif text-[#2E2D2A] mb-4 group-hover:text-[#9A4444] transition-colors">{line.title}</h3>
+          <p class="text-[#5F5A52] font-light text-[15px] leading-loose">
+            {line.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

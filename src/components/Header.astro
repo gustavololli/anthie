@@ -1,0 +1,30 @@
+---
+import { siteConfig } from '../data/site';
+---
+
+<header class="fixed top-0 w-full bg-base/90 backdrop-blur-md z-50 border-b border-cream/50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="font-serif text-[1.75rem] font-semibold tracking-wide text-[#2E2D2A]">
+      Anthie<span class="text-[#9A4444]">.</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8 text-sm tracking-wider uppercase text-[#404728] font-sans">
+      <a href="#universo" class="hover:text-[#9A4444] transition-colors">Universo</a>
+      <a href="#lineas" class="hover:text-[#9A4444] transition-colors">Líneas</a>
+      <a href="#proceso" class="hover:text-[#9A4444] transition-colors">El Proceso</a>
+      <a href="#faq" class="hover:text-[#9A4444] transition-colors">FAQ</a>
+    </nav>
+
+    <!-- CTA -->
+    <a 
+      href={siteConfig.whatsappLink} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="text-sm font-medium border border-[#9A4444] text-[#9A4444] px-5 py-2.5 rounded-full bg-transparent hover:bg-[#9A4444] hover:text-[#FAF8F4] transition-colors duration-300 font-sans"
+    >
+      Consultar
+    </a>
+  </div>
+</header>

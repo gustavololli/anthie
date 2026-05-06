@@ -1,0 +1,23 @@
+---
+import { siteConfig } from '../data/site';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[#FAF8F4] border-t border-[#E8DFCA] py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <span class="font-serif text-2xl font-semibold text-[#2E2D2A] block mb-2">Anthie<span class="text-[#9A4444]">.</span></span>
+      <p class="text-sm text-[#5F5A52]">Acompañando tu equilibrio diario.</p>
+    </div>
+    
+    <div class="flex gap-6 text-sm text-[#404728]">
+      <a href={siteConfig.whatsappLink} target="_blank" rel="noopener noreferrer" class="hover:text-[#9A4444] transition-colors">WhatsApp</a>
+      <a href="#" class="hover:text-[#9A4444] transition-colors">Instagram</a>
+    </div>
+  </div>
+  
+  <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-[#E8DFCA] text-center md:text-left text-xs text-[#5F5A52] flex flex-col md:flex-row justify-between items-center gap-4">
+    <p>&copy; {currentYear} {siteConfig.name}. Todos los derechos reservados.</p>
+    <p>Cuidado botánico, pensado para vos.</p>
+  </div>
+</footer>

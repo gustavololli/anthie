@@ -1,0 +1,37 @@
+---
+import { siteConfig } from '../data/site';
+---
+
+<section class="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
+  <!-- Subtle background decorative elements -->
+  <div class="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[#404728]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+  <div class="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-[#9A4444]/5 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+    <span class="text-[#9A4444] uppercase tracking-[0.28em] font-bold text-[0.82rem] leading-none mb-6 block">Cuidado Botánico</span>
+    <h1 class="text-5xl md:text-[5rem] font-serif text-[#2E2D2A] mb-8 leading-tight">
+      Tu equilibrio de <br/>
+      <span class="italic text-[#9A4444]">todos los días</span><span class="text-[#9A4444]">.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-[#5F5A52] font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+      Fórmulas naturales y cuidado botánico para acompañar tu equilibrio cotidiano, con claridad y calma.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a 
+        href={siteConfig.whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#9A4444] text-[#FAF8F4] px-10 py-5 rounded-full font-sans font-medium tracking-wide hover:bg-[#843838] transition-all duration-300 shadow-[0_14px_30px_rgba(154,68,68,0.22)] border border-[#9A4444]"
+      >
+        Escribinos por WhatsApp
+      </a>
+      <a 
+        href="#universo"
+        class="px-8 py-4 text-[#404728] hover:text-[#9A4444] font-sans transition-colors duration-300"
+      >
+        Conocé nuestra propuesta &darr;
+      </a>
+    </div>
+  </div>
+</section>
