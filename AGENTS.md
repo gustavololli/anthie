@@ -76,3 +76,11 @@ node scripts/generate-favicons.mjs # Regenerar iconos desde el SVG
 - No se encontró configuración de despliegue ni integración continua en los archivos del proyecto revisados.
 
 Actualizar esta guía cuando cambien la arquitectura, los comandos o las integraciones.
+
+## Skills SEO instaladas
+
+- Suite `AgriciDaniel/codex-seo`, versión `v1.9.6-codex.5` (commit `9a4a0b9e3c44eec2ceedcc21d10659427ee3bc1c`), instalada localmente en `.agents/skills/` (27 skills).
+- Entrada principal: `.agents/skills/seo/SKILL.md`. Usar `$seo` o solicitar una revisión SEO; cargar la skill especialista según el alcance.
+- Scripts, referencias, recursos y perfiles de agentes incluidos bajo `.agents/skills/seo/`. Resolver las rutas de scripts desde ese directorio, no desde la raíz de Anthie. Los perfiles TOML se conservan como referencia; no están registrados en la configuración de agentes de Codex.
+- La instalación no incluye el entorno Python ni navegadores de análisis. Si un workflow requiere scripts, preparar primero sus dependencias en un entorno aislado con el instalador incluido. Las integraciones opcionales requieren sus propias credenciales; no guardarlas en el repositorio.
+- Las auditorías deben respetar los datos comerciales confirmados y las restricciones sobre beneficios terapéuticos de esta guía.
