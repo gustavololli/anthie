@@ -3,18 +3,17 @@ import { siteConfig } from '../data/site';
 ---
 
 <header class="fixed top-0 w-full bg-base/90 backdrop-blur-md z-50 border-b border-cream/50 transition-all duration-300">
-  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-5 md:px-6 py-3 md:py-0 min-h-20 grid grid-cols-[1fr_auto] md:flex md:items-center md:justify-between">
     <!-- Logo -->
-    <a href="/" aria-label="Ir al inicio" class="font-serif text-[1.75rem] font-semibold tracking-wide text-[#2E2D2A]">
+    <a href="/" aria-label="Ir al inicio" class="font-serif text-[1.5rem] md:text-[1.75rem] font-semibold tracking-wide text-[#2E2D2A]">
       Anthie<span class="text-[#9A4444]">.</span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8 text-sm tracking-wider uppercase text-[#404728] font-sans">
-      <a href="#universo" class="hover:text-[#9A4444] transition-colors">Universo</a>
+    <nav aria-label="Navegación principal" class="col-span-2 row-start-2 flex items-center justify-center gap-6 pt-3 text-[0.68rem] tracking-[0.12em] uppercase text-[#404728] font-sans md:col-span-1 md:row-auto md:pt-0 md:gap-8 md:text-sm md:tracking-wider">
       <a href="#lineas" class="hover:text-[#9A4444] transition-colors">Líneas</a>
-      <a href="#proceso" class="hover:text-[#9A4444] transition-colors">El Proceso</a>
-      <a href="#faq" class="hover:text-[#9A4444] transition-colors">FAQ</a>
+      <a href="#aprende" class="hover:text-[#9A4444] transition-colors">Aprendé</a>
+      <a href="#revende" class="hover:text-[#9A4444] transition-colors">Revende</a>
     </nav>
 
     <!-- CTA -->
@@ -22,7 +21,7 @@ import { siteConfig } from '../data/site';
       href={siteConfig.whatsappLink} 
       target="_blank" 
       rel="noopener noreferrer"
-      class="text-sm font-medium border border-[#9A4444] text-[#9A4444] px-5 py-2.5 rounded-full bg-transparent hover:bg-[#9A4444] hover:text-[#FAF8F4] transition-colors duration-300 font-sans"
+      class="justify-self-end text-xs md:text-sm font-medium border border-[#9A4444] text-[#9A4444] px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-transparent hover:bg-[#9A4444] hover:text-[#FAF8F4] transition-colors duration-300 font-sans uppercase tracking-wider"
     >
       Consultar
     </a>
